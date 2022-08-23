@@ -8,6 +8,7 @@ export default function RenderOneUser({ props ,numberPage,setNumberPage}) {
     const [readMore, setReadMore] = useState(props.body.substring(0, 50))
     const [hiddenOrShow, setHiddenOrShow] = useState(true)
     const handleVavoritesCount = () => {
+        //dùng setColorFavoritesCount,setCountFavoritesCount thì numberPages lỗi
         setColorFavoritesCount(!colorFavoritesCount)
         if (colorFavoritesCount) {
             props.favoritesCount--
