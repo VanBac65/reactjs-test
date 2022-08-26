@@ -2,20 +2,17 @@ import React, { Fragment } from 'react'
 import { useState } from 'react'
 import { convertTime } from './converMonth'
 
-export default function RenderOneUser({ props ,numberPage,setNumberPage}) {
+export default function RenderOneUser({ props }) {
     const [colorFavoritesCount, setColorFavoritesCount] = useState(false)
     const [countFavoritesCount, setCountFavoritesCount] = useState(props.favoritesCount)
     const [readMore, setReadMore] = useState(props.body.substring(0, 50))
     const [hiddenOrShow, setHiddenOrShow] = useState(true)
     const handleVavoritesCount = () => {
-        //dùng setColorFavoritesCount,setCountFavoritesCount thì numberPages lỗi
         setColorFavoritesCount(!colorFavoritesCount)
         if (colorFavoritesCount) {
-            props.favoritesCount--
             setCountFavoritesCount(countFavoritesCount - 1)
         }
         else {
-            props.favoritesCount++
             setCountFavoritesCount(countFavoritesCount + 1)
         }
     }
@@ -31,7 +28,7 @@ export default function RenderOneUser({ props ,numberPage,setNumberPage}) {
         <Fragment>
             <div className='row d-flex justify-content-between mt-5'>
                 <div className='col-md-3 d-flex'>
-                    <img className='img rounded-circle me-2' src={props.author.image} />
+                    <img className='img rounded-circle me-2' src={props.author.image} alt='' />
                     <div>
                         <h6>{props.author.username}</h6>
                         <p>{convertTime(props.createdAt)}</p>

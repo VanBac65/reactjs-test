@@ -1,12 +1,8 @@
 import React from 'react'
+import Paging from './paging'
 import RenderOneUser from './renderOneUser'
 
-export default function RenderPage({ data, btnPre, btnNext, numberPage,setNumberPage }) {
-    // console.log(data)
-    if (data === false) {
-        console.log(111111)
-    }
-    // console.log('props', data)
+export default function RenderPage({ data, btnPre, btnNext, numberPage, setNumberPage }) {
     return (
         <div className='container mt-5'>
             {/* 
@@ -15,9 +11,9 @@ export default function RenderPage({ data, btnPre, btnNext, numberPage,setNumber
             {
                 // console.log(props.articles)
 
-                data.length>=1 ? data.map((elm, index) => {
+                data.length >= 1 ? data.map((elm, index) => {
                     return (
-                        <RenderOneUser key={index} props={elm} numberPage={numberPage} setNumberPage={setNumberPage}/>
+                        <RenderOneUser key={index} props={elm} />
                     )
                 }) : <div className='row justify-content-center'>
                     <div className='col-md-2 justify-content-center'>
@@ -25,13 +21,7 @@ export default function RenderPage({ data, btnPre, btnNext, numberPage,setNumber
                     </div>
                 </div>
             }
-            <div className='row d-flex justify-content-center mt-3'>
-                <div className='col-md-2 d-flex text-center'>
-                    <div className='col-md-4'><button onClick={() => btnPre()} className='btn py-0 border h-75' >{`<`}</button></div>
-                    <p className='pt-1 px-3'>{numberPage}</p>
-                    <div className='col-md-4'><button onClick={() => btnNext()} className='btn py-0 border h-75'>{`>`}</button></div>
-                </div>
-            </div>
+            <Paging btnPre={btnPre} btnNext={btnNext} numberPage={numberPage} setNumberPage={setNumberPage} />
         </div>
     )
 }

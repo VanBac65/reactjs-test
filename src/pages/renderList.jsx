@@ -8,22 +8,19 @@ export default function RenderList() {
     const [data, setData] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [numberPage, setNumberPage] = useState(1)
-    
-    const btnPre = () =>{
-        setNumberPage(pre =>{
-            if(pre>1){
-                return setNumberPage(numberPage-1)
+
+    const btnPre = () => {
+        setNumberPage(pre => {
+            if (pre > 1) {
+                return pre - 1
             }
-            return setNumberPage(1)
-        })
-        console.log(numberPage)
-    }
-    const btnNext = () =>{
-        setNumberPage(pre =>{
-            return setNumberPage(numberPage+1)
+            return 1
         })
     }
-    useEffect(() => { 
+    const btnNext = () => {
+        setNumberPage(numberPage + 1)
+    }
+    useEffect(() => {
         setIsLoading(pre => pre = true)
         axios.get(`https://api.realworld.io/api/articles/?limit=10&offset=${numberPage}`)
             .then((res) => {
@@ -32,11 +29,11 @@ export default function RenderList() {
                 })
                 setIsLoading(pre => pre = false)
             })
-    }, [numberPage])    
+    }, [numberPage])
     return (
         <Fragment>
             {
-                isLoading ? <div>Loading ....</div> : <RenderPage data={data} btnPre={btnPre} btnNext={btnNext} numberPage={numberPage} setNumberPage={setNumberPage}/>
+                isLoading ? <div>Loading ....</div> : <RenderPage data={data} btnPre={btnPre} btnNext={btnNext} numberPage={numberPage} setNumberPage={setNumberPage} />
             }
         </Fragment>
     )
